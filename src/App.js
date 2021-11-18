@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
+/** App header component
+
+ */
 function AppHeader()  
 {
 
@@ -13,7 +17,7 @@ function AppHeader()
           </div>
       );    
 }
-
+/** Will list all players ( Passed an array as props) */
 function ListPlayers(props)
 {
 	const players = props.players;
@@ -26,7 +30,7 @@ function ListPlayers(props)
 		<ul>{listItems}</ul>
 	);
 }
-	
+/** Returns a random string about how anthony is bad at super smahs bors */
 function Result(){
 	const resultMessage = ["Anthony sucks yo lmao", "Idk who got the most skillz but Anthoy def has the least lmao.","Anthony Sucks at smash bros", "Anthony is not good with Rosalina and Luma", "Anthony got no skills bro", "Anthony is trash at Smash dawg","Somebody tell Anthony to stop playing villager because he's not good with him."]
 	var randomNum = Math.floor(Math.random() * resultMessage.length);
@@ -35,7 +39,7 @@ function Result(){
 	)
 
 }
-
+/** Slowly outputs Calculating by using useEffect */
 function Calculation(){
   const [numberSequence, numberHolder] = React.useState('');
 
@@ -58,7 +62,10 @@ function Calculation(){
 		{numberSequence}<br>
 		</br>
 		{index.current == numbers.length-1?
+		<div>
+			<p> Result: </p>
 			<Result />
+		</div>
 			:null
 		}
     </div>
@@ -75,12 +82,12 @@ class KillCount extends Component {
 	{
 		super(props);
 		this.state = {
-		    stevenCount: '',
-		    gabeCount: '',
-		    liganCount: '',
-			anthonyCount: '',
-			players: [],
-			countSubmit: false,		
+		    stevenCount: '',		//Steven's kill count
+		    gabeCount: '',			//Gabes's kill count
+		    liganCount: '',			//Ligan's kill count
+			anthonyCount: '',		//Anthony's kill count
+			players: [],			// Will countain each player and their kill count
+			countSubmit: false,		// if the submit button was pressed this will turn true
 		};
 		
 		this.labelChangedS = this.labelChangedS.bind(this);
@@ -108,10 +115,12 @@ class KillCount extends Component {
 	}
 	handleSubmit(event) 
 	{
+		// This big condiontional checks that each entered kill count is both a number and not null. For each player.
 		if ((isNaN(this.state.stevenCount) || this.state.stevenCount == '') || (isNaN(this.state.gabeCount) || this.state.gabeCount == '') || (isNaN(this.state.liganCount) || this.state.liganCount == '') || (isNaN(this.state.anthonyCount) || this.state.anthonyCount == ''))
 		{
 			alert("Error: all players need at least one number and just one number.")
 		}
+		// if all are numbers then set submit button pressed to true and set all players into player[] for the list
 	 	else
 		{
 			this.setState({countSubmit:true,players:["Steven: " + String(this.state.stevenCount),"Gabe: " + String(this.state.gabeCount),"Ligan: " + String(this.state.liganCount),"Anthony: " + String(this.state.anthonyCount)]});
@@ -142,9 +151,7 @@ class KillCount extends Component {
 							<input type="submit" value="Submit" />
 						</form>
 							<div className="Pepe">
-							<p>SPIN</p>
 								<img src={require('./images/pepe.jpg').default}/>
-
 							</div>
 					</div>
 					:
